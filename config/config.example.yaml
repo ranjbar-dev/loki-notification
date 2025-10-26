@@ -1,0 +1,20 @@
+app:
+  name: "loki-notification"
+  environment: "development"
+  log_level: "info"
+
+api:
+  host: "0.0.0.0"
+  port: "7777"
+  cert_location: ""
+  key_location: ""
+
+telegram:
+  bot_token: ""
+  chat_id: ""
+
+channels:
+  - name: ""
+    needle: ""
+    telegram_token: ""
+    telegram_chat_id: ""

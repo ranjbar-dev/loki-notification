@@ -1,0 +1,12 @@
+services:
+  
+  # Loki Notification Application
+  app:
+    build:
+      context: .
+      dockerfile: deployments/app/Dockerfile
+      target: dev
+    container_name: loki-notification
+    restart: unless-stopped
+    ports:
+      - "7777:7777"
