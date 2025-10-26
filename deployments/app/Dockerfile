@@ -42,7 +42,6 @@ COPY --from=builder /loki-notification .
 
 # Copy configuration and migrations
 COPY --chown=appuser:appuser config/ ./config/
-COPY --chown=appuser:appuser migrations/ ./migrations/
 
 # Switch to non-root user
 USER appuser
