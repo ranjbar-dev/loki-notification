@@ -99,7 +99,7 @@ func (s *Service) handleEntry(containerName, serviceName string, stream logproto
 	var telegramChatId int64
 	for _, channel := range s.cfg.Channels {
 
-		if channel.Needle == containerName || channel.Needle == serviceName {
+		if strings.Contains(containerName, channel.Needle) || strings.Contains(serviceName, channel.Needle) {
 
 			telegramToken = channel.TelegramToken
 			telegramChatId = channel.TelegramChatId
@@ -126,6 +126,11 @@ func (s *Service) sendTelegramMessage(containerName string, serviceName string, 
 	if level := labels["level"]; level != "" {
 
 		message += fmt.Sprintf("*Level:* `%s`\n", escapeMarkdownV2(level))
+	}
+
+	if containerName == "" && serviceName == "" {
+
+		message += fmt.Sprintf("*Labels:* `%s`\n", escapeMarkdownV2(stream.Labels))
 	}
 
 	if containerName != "" {
